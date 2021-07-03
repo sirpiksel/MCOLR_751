@@ -108,12 +108,8 @@ double*** genSteps(int steplength, int hlength, double Lw, double Lb) {
 }
 
 int main(int argc, char** argv) {
-  // MCOLR-751dot1 {ARGS}
-  // Args:
-  //   -h help
-  //   -H{Hue#},{Saturation},{Lightness},{},{} generate Hues
-  //   -L{Lightness#},{Hue#},{},{} generate Steps * Hues
-  //
+
+  // very wacky input validation
   if (argv[1] == NULL) {
     argv[1] = "-h";
   }
@@ -124,18 +120,16 @@ int main(int argc, char** argv) {
   switch (argv[1][1]) {
     case 'h':
       printf("usage:\n");
-      printf("  %s -h                                                                display this help and exit\n", argv[0]);
-      printf("  %s -H {LightnessSteps} {Saturation} {Lightness} {Lw=1} {Lb=0}        Hues\n", argv[0]);
-      printf("  %s -L {LightnessSteps} {HuesSteps} {Lw=1} {Lb=0}                     Lightness\n", argv[0]);
+      printf("  %s -h                                                           display this help and exit\n", argv[0]);
+      printf("  %s -H {#HueSteps} {Saturation} {Lightness} {Lw=1} {Lb=0}        generate 1 * Hue-Steps\n", argv[0]);
+      printf("  %s -L {#LightnessSteps} {HuesSteps} {Lw=1} {Lb=0}               generate Lightness-Steps * Hue-Steps\n", argv[0]);
       printf("Print MCOLR_751 color for given Hue-Steps, additionally Lightness-Steps can be generated.\nMaximum White/Black Levels (Lw/Lb) can be modified if needed.\n");
       printf("\n");
       printf("Github repo <https://github.com/sirpiksel/MCOLR_751>\n");
       break;
     case 'H':
-      printf("in: -H");
       break;
     case 'L':
-      printf("in: -L");
       break;
     default:
       printf("Error: INVALID ARGUMENTS\n");
